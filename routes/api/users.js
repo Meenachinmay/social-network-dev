@@ -10,6 +10,8 @@ const jwt = require('jsonwebtoken');
 
 const keys = require('../../config/keys');
 
+const passport = require('passport');
+
 // Load user model
 const User = require('../../models/User');
 
@@ -92,8 +94,16 @@ router.post('/login', (req, res) => {
                     }else{
                         return res.status(400).json({password: 'Password is not matched to our database.'})
                     }
-                })
+                });
         });
-})
+});
+
+// @route GET api/users/current
+// @desc  Return a current user
+// @access Private
+router.get('/current_user', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.json(req.user);
+});
+
 
 module.exports = router;
