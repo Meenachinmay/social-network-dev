@@ -176,7 +176,6 @@ router.post('/education', passport.authenticate('jwt', {session: false}), (req, 
 // @access  Private
 router.delete('/experience/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
 
-  console.log('hello world');
   Profile.findOne({ user: req.user.id })
     .then(profile => {
       const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
@@ -213,5 +212,56 @@ router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) =>
     User.findOneAndRemove({ _id: req.user.id }).then(() => res.json({ success: true }));
   });
 });
+
+
+
+
+
+
+// @route   UPDATE api/profile/experience/udpate
+// @desc    Update experience from profile
+// @access  Private
+// router.post('/experience/update/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+
+
+//   Profile.findOne({ user: req.user.id })
+//   .then(profile => {
+    
+//     // make a copy
+//     const make_copy = profile.experience.filter(item => item.id === req.params.exp_id);
+
+//     // getting index to delete current request
+//     const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+
+//     // deleting the current request
+//     profile.experience.splice(removeIndex, 1);
+
+//     // creating a new object
+//     const new_ = {};
+    
+//     make_copy.map(item => {
+//       new_.title = item.title,
+//       new_.from = item.from,
+//       new_.description = item.description,
+//       new_.to = item.to,
+//       new_.company = item.company,
+//       new_.current = item.current,
+//       new_.location = item.location
+//     });
+
+//     if (req.body.title) new_.title = req.body.title;
+//     if (req.body.company) new_.company = req.body.company;
+//     if (req.body.location) new_.location = req.body.location;
+//     if (req.body.from) new_.from = req.body.from;
+//     if (req.body.to) new_.to = req.body.to;
+//     if (req.body.current) new_.current = req.body.current;
+//     if (req.body.description) new_.description = req.body.description;
+
+//     profile.experience.unshift(new_);
+//     profile.save().then(profile => res.json(profile));
+
+//   }).catch(err => res.json(err));
+
+// });
 
 module.exports = router;
