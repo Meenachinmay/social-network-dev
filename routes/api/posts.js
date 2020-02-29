@@ -7,4 +7,6 @@ const router = express.Router();
 // @access Public
 router.get('/test', (req, res) => res.status(200).json({msg: "Posts works"}));
 
+
+
 module.exports = router;
