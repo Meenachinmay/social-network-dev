@@ -217,7 +217,7 @@ router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) =>
 // @route   UPDATE api/profile/experience/udpate
 // @desc    Update experience from profile
 // @access  Private
-router.put('/experience/update/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.patch('/experience/update/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
 
 
   Profile.findOne({ user: req.user.id })
@@ -232,7 +232,7 @@ router.put('/experience/update/:exp_id', passport.authenticate('jwt', {session: 
           'experience.$.to': req.body.to,
           'experience.$.current': req.body.current,
           'experience.$.description': req.body.description,
-        }},{ returnOriginal: false },
+        }},
       (err, result) => {  
       if (err){
         res.status(500).json({error: 'Unable to update'});
@@ -245,11 +245,10 @@ router.put('/experience/update/:exp_id', passport.authenticate('jwt', {session: 
 
 });
 
-
 // @route   UPDATE api/profile/education/udpate
 // @desc    Update education from profile
 // @access  Private
-router.put('/education/update/:edu_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.patch('/education/update/:edu_id', passport.authenticate('jwt', {session: false}), (req, res) => {
 
 
   Profile.findOne({ user: req.user.id })
@@ -273,8 +272,6 @@ router.put('/education/update/:edu_id', passport.authenticate('jwt', {session: f
       }
     });
   }).catch(err => res.json(err));
-
-
 });
 
 
