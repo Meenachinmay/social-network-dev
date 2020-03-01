@@ -214,6 +214,68 @@ router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) =>
 });
 
 
+// @route   UPDATE api/profile/experience/udpate
+// @desc    Update experience from profile
+// @access  Private
+router.post('/experience/update/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+
+
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    
+      Profile.update({'experience._id': req.params.exp_id},{$set: 
+        {
+          'experience.$.title': req.body.title, 
+          'experience.$.company': req.body.company,
+          'experience.$.location': req.body.location,
+          'experience.$.from': req.body.from,
+          'experience.$.to': req.body.to,
+          'experience.$.current': req.body.current,
+          'experience.$.description': req.body.description,
+        }},{ returnOriginal: false },
+      (err, result) => {  
+      if (err){
+        res.status(500).json({error: 'Unable to update'});
+      }else {
+        res.status(200).json(profile);
+      }
+    });
+  }).catch(err => res.json(err));
+
+
+});
+
+
+// @route   UPDATE api/profile/education/udpate
+// @desc    Update education from profile
+// @access  Private
+router.post('/education/update/:edu_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+
+
+  Profile.findOne({ user: req.user.id })
+  .then(profile => {
+    
+      Profile.update({'education._id': req.params.edu_id},{$set: 
+        {
+          'education.$.school': req.body.school, 
+          'education.$.degree': req.body.degree,
+          'education.$.fieldofstudy': req.body.fieldofstudy,
+          'education.$.from': req.body.from,
+          'education.$.to': req.body.to,
+          'education.$.current': req.body.current,
+          'education.$.description': req.body.description,
+        }},{ returnOriginal: false },
+      (err, result) => {  
+      if (err){
+        res.status(500).json({error: 'Unable to update'});
+      }else {
+        res.status(200).json(profile);
+      }
+    });
+  }).catch(err => res.json(err));
+
+
+});
 
 
 
