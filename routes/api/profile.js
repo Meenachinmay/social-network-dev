@@ -217,7 +217,7 @@ router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) =>
 // @route   UPDATE api/profile/experience/udpate
 // @desc    Update experience from profile
 // @access  Private
-router.post('/experience/update/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.put('/experience/update/:exp_id', passport.authenticate('jwt', {session: false}), (req, res) => {
 
 
   Profile.findOne({ user: req.user.id })
@@ -249,7 +249,7 @@ router.post('/experience/update/:exp_id', passport.authenticate('jwt', {session:
 // @route   UPDATE api/profile/education/udpate
 // @desc    Update education from profile
 // @access  Private
-router.post('/education/update/:edu_id', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.put('/education/update/:edu_id', passport.authenticate('jwt', {session: false}), (req, res) => {
 
 
   Profile.findOne({ user: req.user.id })
