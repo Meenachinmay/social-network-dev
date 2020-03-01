@@ -22,6 +22,17 @@ mongoose.set('useFindAndModify', false);
 // @access  Public
 router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
 
+
+// @route GET api/profile
+// @desc  Get all profiles
+// @access Public
+router.get('/all', (req,res) => {
+  Profile.find()
+      .then(profiles => res.json(profiles))
+      .catch(err => res.status(404).json({nopostsFound: 'No Posts found with that id'}));
+});
+
+
 // @route   GET api/profile
 // @desc    Get current users profile
 // @access  Private
