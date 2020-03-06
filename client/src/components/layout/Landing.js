@@ -9,12 +9,12 @@ export default class Landing extends Component {
                 <div class="container">
                     <div class="row">
                     <div class="col-md-12 text-center">
-                        <h1 class="display-3 mb-4">Social Network Dev
+                        <h1 class="display-3 mb-4">ソーシャルネットワーク
                         </h1>
-                        <p class="lead"> Create a developer profile/portfolio, share posts and get help from other developers</p>
+                        <p class="lead">新しい開発者プロファイルを作って、共有と投稿して, 他の開発者から助けを得るための</p>
                         <hr />
-                        <Link to="register" class="btn btn-lg btn-info mr-2">Sign Up</Link>
-                        <Link to="login" class="btn btn-lg btn-light">Login</Link>
+                        <Link to="register" class="btn btn-lg btn-info mr-2">サインアップ</Link>
+                        <Link to="login" class="btn btn-lg btn-light">ログイン</Link>
                     </div>
                     </div>
                 </div>
