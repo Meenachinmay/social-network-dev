@@ -17,8 +17,12 @@ class App extends React.Component {
         <div className="App">
           <Navbar />
             <Route exact path="/" component={ Landing }/>
-            <Route path="/login" component={ Login }/>
-            <Route path="/register" component={ Register }/>
+
+            <div className="container">
+              <Route exact path="/login" component={ Register }/>
+              <Route exact path="/register" component={ Login }/>
+            </div>
+            
           <Footer />
         </div>
       </Router>
