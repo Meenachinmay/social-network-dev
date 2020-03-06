@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import axios from 'axios';
+
 class Login extends Component{ 
 
     constructor(){
@@ -26,7 +28,9 @@ class Login extends Component{
             password: this.state.password
         }
 
-        console.log(loggedInUser);
+        axios.post('/api/users/login', loggedInUser)
+            .then(response => console.log(response.data))
+            .catch(error => console.log(error.response.data));
     }
 
     render(){
