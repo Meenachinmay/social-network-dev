@@ -9,7 +9,8 @@ class Login extends Component{
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: ''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -30,7 +31,7 @@ class Login extends Component{
 
         axios.post('/api/users/login', loggedInUser)
             .then(response => console.log(response.data))
-            .catch(error => console.log(error.response.data));
+            .catch(error => this.setState({ errors: error.response.data }));
     }
 
     render(){
