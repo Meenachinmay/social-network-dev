@@ -4,6 +4,10 @@ import axios from 'axios';
 
 import classnames from 'classnames';
 
+import { connect } from 'react-redux';
+
+import { registerUser } from '../../actions/authActions';
+
 class Register extends Component{ 
     constructor(){
         super();
@@ -34,9 +38,10 @@ class Register extends Component{
             password2: this.state.password2
         }
 
-        axios.post('/api/users/register', newUser)
-            .then(response => console.log(response.data))
-            .catch(error => this.setState({ errors: error.response.data }));
+        // axios
+        //     .post('/api/users/register', newUser)
+        //     .then(response => console.log(response.data))
+        //     .catch(error => this.setState({ errors: error.response.data }));
     }
 
     render(){
@@ -50,15 +55,15 @@ class Register extends Component{
                         <div className="col-md-8 m-auto">
                             <h1 className="display-4 text-center">サインアップ</h1>
                             <p className="lead text-center">新しいアカウントを作成する</p>
-                            <form onSubmit={ this.onSubmit }>
+                            <form noValidate onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                 <input type="text" className={classnames('form-control form-control-lg', {'is-invalid': errors.name})} placeholder="お名前" name="name" value={ this.state.name } onChange={ this.onChange } />
                                     {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                                 </div>
                                 <div className="form-group">
                                 <input type="email" className={classnames('form-control form-control-lg', {'is-invalid': errors.email})} placeholder="メールアドレス" name="email" value={ this.state.email } onChange={ this.onChange } />
-                                <small className="form-text text-muted">このサイトはグラバターを使っていますので、グラバタープロファイル写真を使いたいならグラバターメールを使って下さい。</small>
                                     {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                                <small className="form-text text-muted">このサイトはグラバターを使っていますので、グラバタープロファイル写真を使いたいならグラバターメールを使って下さい。</small>
                                 </div>
                                 <div className="form-group">
                                 <input type="password" className={classnames('form-control form-control-lg', {'is-invalid': errors.password})} placeholder="パスワード" name="password" value={ this.state.password } onChange={ this.onChange } />
@@ -78,4 +83,4 @@ class Register extends Component{
     }
 }
 
-export default Register;
+export default connect(null, { registerUser })(Register);
