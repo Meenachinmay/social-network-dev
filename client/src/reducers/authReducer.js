@@ -3,7 +3,7 @@ import { SET_CURRENT_USER } from '../actions/types';
 
 
 const initialState = {
-    isAuthtenticated: false,
+    isAuthenticated: false,
     user: {},
 };
 
@@ -12,7 +12,7 @@ export default function(state = initialState, action){
         case SET_CURRENT_USER:
             return {
                 ...state,
-                isAuthtenticated: !isEmpty(action.payload),
+                isAuthenticated: !isEmpty(action.payload),
                 user: action.payload
             }
         default: 
