@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 
 import { registerUser } from '../../actions/authActions';
 
+import TextFieldGroup from '../../components/common/TextFieldGroup';
+
 class Register extends Component{ 
     constructor(){
         super();
@@ -66,23 +68,38 @@ class Register extends Component{
                             <h1 className="display-4 text-center">サインアップ</h1>
                             <p className="lead text-center">新しいアカウントを作成する</p>
                             <form noValidate onSubmit={this.onSubmit}>
-                                <div className="form-group">
-                                <input type="text" className={classnames('form-control form-control-lg', {'is-invalid': errors.name})} placeholder="お名前" name="name" value={ this.state.name } onChange={ this.onChange } />
-                                    {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
-                                </div>
-                                <div className="form-group">
-                                <input type="email" className={classnames('form-control form-control-lg', {'is-invalid': errors.email})} placeholder="メールアドレス" name="email" value={ this.state.email } onChange={ this.onChange } />
-                                    {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
-                                <small className="form-text text-muted">このサイトはグラバターを使っていますので、グラバタープロファイル写真を使いたいならグラバターメールを使って下さい。</small>
-                                </div>
-                                <div className="form-group">
-                                <input type="password" className={classnames('form-control form-control-lg', {'is-invalid': errors.password})} placeholder="パスワード" name="password" value={ this.state.password } onChange={ this.onChange } />
-                                    {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
-                                </div>
-                                <div className="form-group">
-                                <input type="password" className={classnames('form-control form-control-lg', {'is-invalid': errors.password2})} placeholder="パスウード　認証する" name="password2" value={ this.state.password2 } onChange={ this.onChange } />
-                                    {errors.password2 && (<div className="invalid-feedback">{errors.password2}</div>)}
-                                </div>
+                                <TextFieldGroup 
+                                    placeholder="お名前"
+                                    name="name"
+                                    value={this.state.name}
+                                    type="text"
+                                    onChange={this.onChange}
+                                    error={errors.name}
+                                />
+                                <TextFieldGroup 
+                                    placeholder="メールアドレス"
+                                    name="email"
+                                    value={this.state.email}
+                                    type="email"
+                                    onChange={this.onChange}
+                                    error={errors.email}
+                                />
+                                <TextFieldGroup 
+                                    placeholder="パスワード"
+                                    name="password"
+                                    value={this.state.password}
+                                    type="password"
+                                    onChange={this.onChange}
+                                    error={errors.password}
+                                />
+                                <TextFieldGroup 
+                                    placeholder="パスウード　認証する"
+                                    name="password2"
+                                    value={this.state.password2}
+                                    type="password"
+                                    onChange={this.onChange}
+                                    error={errors.password2}
+                                />
                                 <input type="submit" className="btn btn-info btn-block mt-4" />
                             </form>
                         </div>
