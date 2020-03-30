@@ -6,10 +6,6 @@ import { loginUser } from '../../actions/authActions';
 
 import TextFieldGroup from '../../components/common/TextFieldGroup';
 
-import axios from 'axios';
-
-import classnames from 'classnames';
-
 class Login extends Component{ 
 
     constructor(){
